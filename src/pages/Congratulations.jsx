@@ -22,17 +22,25 @@ export default function Congratulations() {
         if (zipCode) {
           const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`)
           const data = await response.json()
-          console.log('[v0] Zip code location data:', data)
+          console.log('[v0] Full API Response:', JSON.stringify(data, null, 2))
           
           if (data.places && data.places.length > 0) {
             const place = data.places[0]
             const city = place['place name'] || 'Your Area'
-            const state = data.state || 'USA'
-            setCityState({ city, state })
+            // The state abbreviation is in data.state (e.g., "NY", "CA", "TX")
+            const stateAbbr = data.state || 'USA'
+            console.log('[v0] Extracted State Abbreviation:', stateAbbr)
+            setCityState({ city, state: stateAbbr })
+          } else {
+            console.log('[v0] No places found in response')
+            setCityState({ city: 'Your Area', state: 'USA' })
           }
+        } else {
+          console.log('[v0] No zip code provided')
         }
       } catch (error) {
         console.log('[v0] Zip code location fetch failed:', error)
+        setCityState({ city: 'Your Area', state: 'USA' })
       }
     }
 
