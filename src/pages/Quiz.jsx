@@ -16,9 +16,9 @@ export default function Quiz() {
 
   const handleSelectScore = (score) => {
     setSelectedScore(score)
-    // Navigate to congratulations page after a brief delay
+    // Navigate to loading page after a brief delay
     setTimeout(() => {
-      navigate('/congratulations', {
+      navigate('/loading', {
         state: { creditScore: score },
       })
     }, 300)
