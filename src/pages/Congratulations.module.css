@@ -291,34 +291,36 @@
 
 /* Timer Container */
 .timerContainer {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 24px 0;
-  margin: 32px 0;
+  background: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 32px 40px;
+  margin: 40px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .timerLabel {
   color: #1f2937;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 800;
   margin: 0;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .timer {
-  font-size: 72px;
+  font-size: 96px;
   font-weight: 900;
   color: #dc2626;
   font-family: 'Courier New', monospace;
-  letter-spacing: 6px;
+  letter-spacing: 2px;
   line-height: 1;
+  text-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
 }
 
 .checkWrap {
@@ -398,17 +400,21 @@
   }
 
   .timer {
-    font-size: 52px;
-    letter-spacing: 4px;
+    font-size: 64px;
+    letter-spacing: 1px;
   }
 
   .timerContainer {
-    padding: 16px 0;
-    margin: 24px 0;
-    gap: 12px;
+    padding: 24px 20px;
+    margin: 32px 0;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 
   .timerLabel {
-    font-size: 11px;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    order: -1;
   }
 }
