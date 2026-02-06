@@ -81,33 +81,3 @@ export default function Loading() {
     </div>
   )
 }
-
-  return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <h1 className={styles.title}>Finding Your Best Options</h1>
-
-        <p className={styles.location}>
-          Checking availability in <span className={styles.highlight}>{cityState.city}, {cityState.state}</span>
-        </p>
-
-        {/* Loading animation */}
-        <div className={styles.loadingContainer}>
-          <div className={styles.spinner}></div>
-          <div className={styles.pulseCircles}>
-            <div className={styles.pulse}></div>
-            <div className={styles.pulse}></div>
-            <div className={styles.pulse}></div>
-          </div>
-        </div>
-
-        {/* Progress bar */}
-        <div className={styles.progressBar}>
-          <div className={styles.progressFill}></div>
-        </div>
-
-        <p className={styles.status}>Analyzing your profile...</p>
-      </div>
-    </div>
-  )
-}
