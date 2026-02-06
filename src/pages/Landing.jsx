@@ -6,7 +6,7 @@ import styles from './Landing.module.css'
 
 export default function Landing() {
   const navigate = useNavigate()
-  const [state, setState] = useState('...')
+  const [location, setLocation] = useState('United States')
   const [selectedScore, setSelectedScore] = useState(null)
 
   useEffect(() => {
@@ -19,15 +19,17 @@ export default function Landing() {
               `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
             )
             const data = await response.json()
-            const stateName = data.address?.state || 'United States'
-            setState(stateName)
+            const city = data.address?.city || data.address?.town || data.address?.village || ''
+            const state = data.address?.state || 'United States'
+            const displayLocation = city && city !== state ? `${city}, ${state}` : state
+            setLocation(displayLocation)
           } catch (error) {
             console.log('[v0] Geolocation reverse lookup failed:', error)
-            setState('United States')
+            setLocation('United States')
           }
         },
         () => {
-          setState('United States')
+          setLocation('United States')
         }
       )
     }
@@ -64,7 +66,7 @@ export default function Landing() {
         <div className={styles.content}>
           {/* Headline */}
           <h1 className={styles.headline}>
-            Homeowners in {state} Now Eligible for Cash-Out Up to{' '}
+            Homeowners in {location} Now Eligible for Cash-Out Up to{' '}
             <span className={styles.highlight}>$185,000</span>
           </h1>
 
