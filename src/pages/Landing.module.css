@@ -1,0 +1,269 @@
+.container {
+  min-height: 100vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Government Header */
+.govHeader {
+  background: #003366;
+  padding: 16px 0;
+  border-bottom: 4px solid #cc0000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.govBar {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.govSeal {
+  color: #cc0000;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.govAgency {
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.govProgram {
+  color: #ffcc00;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* News Banner */
+.newsBanner {
+  background: #cc0000;
+  padding: 8px 0;
+  border-bottom: 2px solid #990000;
+}
+
+.newsLabel {
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+}
+
+/* Main Content */
+.main {
+  flex: 1;
+  padding: 32px 20px;
+  overflow-y: auto;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  animation: slideUp 0.6s ease-out;
+}
+
+.headline {
+  font-size: clamp(24px, 5vw, 40px);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  color: #003366;
+  text-align: center;
+}
+
+.highlight {
+  color: #cc0000;
+  font-weight: 800;
+}
+
+.subheadline {
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+/* Quiz Container */
+.quizContainer {
+  background: #f5f5f5;
+  border: 2px solid #003366;
+  border-radius: 8px;
+  padding: 28px;
+  margin: 32px 0;
+}
+
+.quizTitle {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #003366;
+  margin-bottom: 24px;
+}
+
+.quizOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.creditButton {
+  padding: 16px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: white;
+}
+
+.creditButton.fair {
+  background: #c41e3a;
+}
+
+.creditButton.fair:hover {
+  background: #a01830;
+  transform: translateX(4px);
+}
+
+.creditButton.good {
+  background: #4a7c59;
+}
+
+.creditButton.good:hover {
+  background: #3d6548;
+  transform: translateX(4px);
+}
+
+.creditButton.excellent {
+  background: #2d7c2d;
+}
+
+.creditButton.excellent:hover {
+  background: #246a24;
+  transform: translateX(4px);
+}
+
+.creditButton.selected {
+  border-color: #ffcc00;
+  border-width: 3px;
+  box-shadow: 0 0 12px rgba(255, 204, 0, 0.5);
+}
+
+.scoreRange {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.scoreLabel {
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+/* Requirements */
+.requirements {
+  background: #e8f4f8;
+  border-left: 4px solid #003366;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 24px 0;
+}
+
+.reqTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.reqList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reqItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #2d7c2d;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Footer Notice */
+.footerNotice {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  margin-top: 24px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 24px 16px;
+  }
+
+  .quizContainer {
+    padding: 20px;
+  }
+
+  .headline {
+    font-size: 20px;
+  }
+
+  .govAgency {
+    font-size: 10px;
+  }
+
+  .govProgram {
+    font-size: 14px;
+  }
+}

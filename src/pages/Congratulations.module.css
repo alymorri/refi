@@ -1,0 +1,350 @@
+.container {
+  min-height: 100vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Government Header */
+.govHeader {
+  background: #003366;
+  padding: 16px 0;
+  border-bottom: 4px solid #cc0000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.govBar {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.govSeal {
+  color: #cc0000;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.govAgency {
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.govProgram {
+  color: #ffcc00;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* News Banner */
+.newsBanner {
+  background: #cc0000;
+  padding: 8px 0;
+  border-bottom: 2px solid #990000;
+}
+
+.newsLabel {
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+}
+
+/* Main Content */
+.main {
+  flex: 1;
+  padding: 32px 20px;
+  overflow-y: auto;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.congratsSection {
+  animation: slideUp 0.6s ease-out;
+  text-align: center;
+}
+
+.mainTitle {
+  font-size: clamp(36px, 7vw, 56px);
+  font-weight: 800;
+  color: #003366;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+
+.amountBox {
+  position: relative;
+  margin: 40px 0;
+  padding: 40px;
+  background: linear-gradient(135deg, #003366 0%, #1e40af 100%);
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0, 51, 102, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.amountContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.currencySymbol {
+  font-size: 48px;
+  font-weight: 700;
+  display: inline;
+  line-height: 1;
+}
+
+.amount {
+  font-size: clamp(42px, 10vw, 72px);
+  font-weight: 900;
+  display: inline;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+/* Wrapper for currency and amount on same line */
+.currencySymbol+.amount {
+  margin-left: 0;
+}
+
+.approvalBadge {
+  display: inline-block;
+  background: #2d7c2d;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 12px;
+  box-shadow: 0 4px 12px rgba(45, 124, 45, 0.3);
+}
+
+/* Message Text */
+.message {
+  font-size: 16px;
+  color: #374151;
+  margin: 32px 0;
+  line-height: 1.6;
+}
+
+/* Benefits Grid */
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 40px 0;
+  animation: slideUp 0.8s ease-out 0.2s backwards;
+}
+
+.benefitCard {
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.benefitCard:hover {
+  border-color: #003366;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.1);
+  transform: translateY(-4px);
+}
+
+.benefitIcon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.benefitTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 6px;
+}
+
+.benefitText {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* Next Steps Box */
+.nextStepsBox {
+  background: #e8f4f8;
+  border-left: 6px solid #003366;
+  border-radius: 6px;
+  padding: 28px;
+  margin: 36px 0;
+  text-align: left;
+}
+
+.nextStepsTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 12px;
+}
+
+.nextStepsText {
+  font-size: 16px;
+  color: #003366;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* CTA Button */
+.ctaButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  margin: 28px 0;
+  padding: 20px 32px;
+  background: #2d7c2d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  box-shadow: 0 6px 20px rgba(45, 124, 45, 0.3);
+}
+
+.ctaButton:hover {
+  background: #246a24;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45, 124, 45, 0.4);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+.arrow {
+  font-size: 22px;
+  font-weight: 900;
+}
+
+/* Urgency Text */
+.urgencyText {
+  font-size: 16px;
+  color: #cc0000;
+  font-weight: 700;
+  margin-top: 20px;
+  line-height: 1.5;
+}
+
+.checkWrap {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  /* prevents any overflow issues */
+}
+
+.checkImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 520px;
+  /* control size on desktop (adjust if you want) */
+  margin: 16px auto 0;
+  object-fit: contain;
+  /* keeps full image visible */
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 24px 16px;
+  }
+
+  .mainTitle {
+    font-size: 32px;
+  }
+
+  .amountBox {
+    padding: 24px 16px;
+    min-height: 280px;
+  }
+
+  .amountContent {
+    gap: 8px;
+  }
+
+  .currencySymbol {
+    font-size: 36px;
+  }
+
+  .amount {
+    font-size: clamp(36px, 8vw, 56px);
+  }
+
+  .nextStepsBox {
+    padding: 20px;
+  }
+
+  .ctaButton {
+    font-size: 16px;
+    padding: 18px 24px;
+  }
+
+  .govAgency {
+    font-size: 10px;
+  }
+
+  .govProgram {
+    font-size: 14px;
+  }
+
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+  }
+}
