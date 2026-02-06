@@ -15,9 +15,11 @@ export default function Quiz() {
   ]
 
   const handleSelectScore = (score) => {
+    console.log('[v0] Selected score:', score)
     setSelectedScore(score)
     // Navigate to loading page after a brief delay
     setTimeout(() => {
+      console.log('[v0] Navigating to /loading')
       navigate('/loading', {
         state: { creditScore: score },
       })
