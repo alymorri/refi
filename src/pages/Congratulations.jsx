@@ -8,6 +8,7 @@ export default function Congratulations() {
   const navigate = useNavigate()
   const location = useLocation()
   const [displayAmount, setDisplayAmount] = useState(0)
+  const [timeLeft, setTimeLeft] = useState(300) // 5 minutes in seconds
   const targetAmount = 183598
 
   // Animated counter
@@ -29,8 +30,30 @@ export default function Congratulations() {
     return () => clearInterval(interval)
   }, [])
 
+  // 5-minute countdown timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
   const handleFillForm = () => {
     navigate('/form')
+  }
+
+  // Format countdown time
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${secs.toString().padStart(2, '0')}`
   }
 
   // Format amount with decimal places
@@ -104,10 +127,11 @@ export default function Congratulations() {
               <span className={styles.arrow}>→</span>
             </button>
 
-            {/* Urgency Message */}
-            <p className={styles.urgencyText}>
-              This offer is limited. Secure your approval now before funding runs out!
-            </p>
+            {/* Urgency Message with Timer */}
+            <div className={styles.timerContainer}>
+              <p className={styles.timerLabel}>Offer expires in:</p>
+              <div className={styles.timer}>{formatTime(timeLeft)}</div>
+            </div>
 
             {/* Bank Check Image */}
             <div className={styles.checkWrap}>

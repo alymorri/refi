@@ -289,6 +289,33 @@
   line-height: 1.5;
 }
 
+/* Timer Container */
+.timerContainer {
+  background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+  border-radius: 8px;
+  padding: 28px;
+  margin: 28px 0;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(204, 0, 0, 0.2);
+}
+
+.timerLabel {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  letter-spacing: 0.5px;
+}
+
+.timer {
+  font-size: 56px;
+  font-weight: 900;
+  color: #ffcc00;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 4px;
+  line-height: 1;
+}
+
 .checkWrap {
   width: 100%;
   max-width: 100%;
@@ -363,5 +390,14 @@
 
   .benefitsGrid {
     grid-template-columns: 1fr;
+  }
+
+  .timer {
+    font-size: 40px;
+    letter-spacing: 2px;
+  }
+
+  .timerContainer {
+    padding: 20px;
   }
 }
