@@ -94,8 +94,7 @@ export default function Congratulations() {
             <div className={styles.nextStepsBox}>
               <h2 className={styles.nextStepsTitle}>Next Steps:</h2>
               <p className={styles.nextStepsText}>
-                Fill out the form below to access your cash-out funds. Your dedicated loan specialist will verify your
-                information and guide you through the entire process.
+                Click the button below to release your approved cash-out funds now
               </p>
             </div>
 
