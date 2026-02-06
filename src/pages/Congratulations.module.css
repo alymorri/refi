@@ -150,6 +150,24 @@
   box-shadow: 0 4px 12px rgba(45, 124, 45, 0.3);
 }
 
+/* Qualification Box */
+.qualificationBox {
+  background: #e8f4f8;
+  border-left: 6px solid #003366;
+  border-radius: 6px;
+  padding: 28px;
+  margin: 36px 0;
+  text-align: center;
+}
+
+.qualificationText {
+  font-size: 18px;
+  color: #003366;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 500;
+}
+
 /* Message Text */
 .message {
   font-size: 16px;

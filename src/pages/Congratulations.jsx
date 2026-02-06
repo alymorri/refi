@@ -83,9 +83,12 @@ export default function Congratulations() {
               </div>
             </div>
 
-            <p className={styles.message}>
-              Based on your credit profile and home equity, you qualify for this cash-out amount!
-            </p>
+            {/* Qualification Info Box */}
+            <div className={styles.qualificationBox}>
+              <p className={styles.qualificationText}>
+                Based on your credit profile and home equity, you qualify for this cash-out amount!
+              </p>
+            </div>
 
             {/* Bank Check Image */}
             {/* Bank Check Image */}
