@@ -150,7 +150,7 @@ export default function Congratulations() {
             {/* Qualification Info Box */}
             <div className={styles.qualificationBox}>
               <p className={styles.qualificationText}>
-                Based on your location in {cityState.city}, {cityState.state}, you qualify for this cash-out amount!
+                Approved: Claim your cash-out amount now in {cityState.state}
               </p>
             </div>
 
