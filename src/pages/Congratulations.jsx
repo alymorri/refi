@@ -46,7 +46,20 @@ export default function Congratulations() {
   }, [])
 
   const handleFillForm = () => {
-    navigate('/form')
+    const creditScore = location.state?.creditScore
+    console.log('[v0] Credit score from state:', creditScore)
+
+    // Define URLs based on credit score
+    const urlMap = {
+      'Fair': 'https://example.com/fair-credit-offer',
+      'Good': 'https://example.com/good-credit-offer',
+      'Excellent': 'https://example.com/excellent-credit-offer',
+    }
+
+    const url = urlMap[creditScore] || 'https://example.com/default-offer'
+    
+    // Open in new tab or navigate
+    window.location.href = url
   }
 
   // Format countdown time
