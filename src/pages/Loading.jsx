@@ -14,23 +14,36 @@ export default function Loading() {
 
   useEffect(() => {
     console.log('[v0] Loading useEffect triggered')
-    // Fetch user's location based on IP
-    const fetchLocation = async () => {
+    // Fetch location based on zip code entered by user
+    const fetchLocationFromZip = async () => {
       try {
-        console.log('[v0] Fetching IP location...')
-        const response = await fetch('https://ipapi.co/json/')
-        const data = await response.json()
-        console.log('[v0] IP location data:', data)
-        const city = data.city || 'Your Area'
-        const state = data.region || 'USA'
-        setCityState({ city, state })
+        const zipCode = location.state?.zipCode
+        console.log('[v0] Zip code from state:', zipCode)
+        
+        if (zipCode) {
+          // Use US ZIP code API to get city and state
+          const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`)
+          const data = await response.json()
+          console.log('[v0] Zip code location data:', data)
+          
+          if (data.places && data.places.length > 0) {
+            const place = data.places[0]
+            const city = place['place name'] || 'Your Area'
+            const state = data.state || 'USA'
+            setCityState({ city, state })
+          } else {
+            setCityState({ city: 'Your Area', state: 'USA' })
+          }
+        } else {
+          setCityState({ city: 'Your Area', state: 'USA' })
+        }
       } catch (error) {
-        console.log('[v0] IP location fetch failed:', error)
+        console.log('[v0] Zip code location fetch failed:', error)
         setCityState({ city: 'Your Area', state: 'USA' })
       }
     }
 
-    fetchLocation()
+    fetchLocationFromZip()
   }, [])
 
   useEffect(() => {
