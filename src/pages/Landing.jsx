@@ -12,8 +12,19 @@ export default function Landing() {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        () => {
-          setState('United States')
+        async (position) => {
+          try {
+            const { latitude, longitude } = position.coords
+            const response = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+            )
+            const data = await response.json()
+            const stateName = data.address?.state || 'United States'
+            setState(stateName)
+          } catch (error) {
+            console.log('[v0] Geolocation reverse lookup failed:', error)
+            setState('United States')
+          }
         },
         () => {
           setState('United States')
