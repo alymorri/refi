@@ -296,16 +296,20 @@
   border-radius: 0;
   padding: 24px 0;
   margin: 32px 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 }
 
 .timerLabel {
   color: #1f2937;
   font-size: 12px;
   font-weight: 700;
-  margin: 0 0 12px 0;
+  margin: 0;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .timer {
@@ -401,5 +405,10 @@
   .timerContainer {
     padding: 16px 0;
     margin: 24px 0;
+    gap: 12px;
+  }
+
+  .timerLabel {
+    font-size: 11px;
   }
 }
