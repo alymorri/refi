@@ -9,7 +9,35 @@ export default function Congratulations() {
   const location = useLocation()
   const [displayAmount, setDisplayAmount] = useState(0)
   const [timeLeft, setTimeLeft] = useState(300) // 5 minutes in seconds
+  const [cityState, setCityState] = useState({ city: 'Your Area', state: 'USA' })
   const targetAmount = 183598
+
+  // Fetch location from zip code
+  useEffect(() => {
+    const fetchLocationFromZip = async () => {
+      try {
+        const zipCode = location.state?.zipCode
+        console.log('[v0] Zip code from state:', zipCode)
+        
+        if (zipCode) {
+          const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`)
+          const data = await response.json()
+          console.log('[v0] Zip code location data:', data)
+          
+          if (data.places && data.places.length > 0) {
+            const place = data.places[0]
+            const city = place['place name'] || 'Your Area'
+            const state = data.state || 'USA'
+            setCityState({ city, state })
+          }
+        }
+      } catch (error) {
+        console.log('[v0] Zip code location fetch failed:', error)
+      }
+    }
+
+    fetchLocationFromZip()
+  }, [])
 
   // Animated counter
   useEffect(() => {
@@ -122,7 +150,7 @@ export default function Congratulations() {
             {/* Qualification Info Box */}
             <div className={styles.qualificationBox}>
               <p className={styles.qualificationText}>
-                Based on your credit profile and home equity, you qualify for this cash-out amount!
+                Based on your location in {cityState.city}, {cityState.state}, you qualify for this cash-out amount!
               </p>
             </div>
 
