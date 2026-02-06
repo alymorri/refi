@@ -90,7 +90,26 @@ export default function Congratulations() {
               </p>
             </div>
 
-            {/* Bank Check Image */}
+            {/* Next Steps Box */}
+            <div className={styles.nextStepsBox}>
+              <h2 className={styles.nextStepsTitle}>Next Steps:</h2>
+              <p className={styles.nextStepsText}>
+                Fill out the form below to access your cash-out funds. Your dedicated loan specialist will verify your
+                information and guide you through the entire process.
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <button className={styles.ctaButton} onClick={handleFillForm}>
+              FILL OUT FORM NOW TO ACCESS YOUR CASH
+              <span className={styles.arrow}>→</span>
+            </button>
+
+            {/* Urgency Message */}
+            <p className={styles.urgencyText}>
+              This offer is limited. Secure your approval now before funding runs out!
+            </p>
+
             {/* Bank Check Image */}
             <div className={styles.checkWrap}>
               <img
@@ -99,8 +118,6 @@ export default function Congratulations() {
                 className={styles.checkImage}
               />
             </div>
-
-
 
             {/* Key Benefits */}
             <div className={styles.benefitsGrid}>
@@ -122,26 +139,6 @@ export default function Congratulations() {
                 <div className={styles.benefitText}>Potentially reduce your mortgage</div>
               </div>
             </div>
-
-            {/* Next Steps Box */}
-            <div className={styles.nextStepsBox}>
-              <h2 className={styles.nextStepsTitle}>Next Steps:</h2>
-              <p className={styles.nextStepsText}>
-                Fill out the form below to access your cash-out funds. Your dedicated loan specialist will verify your
-                information and guide you through the entire process.
-              </p>
-            </div>
-
-            {/* CTA Button */}
-            <button className={styles.ctaButton} onClick={handleFillForm}>
-              FILL OUT FORM NOW TO ACCESS YOUR CASH
-              <span className={styles.arrow}>→</span>
-            </button>
-
-            {/* Urgency Message */}
-            <p className={styles.urgencyText}>
-              This offer is limited. Secure your approval now before funding runs out!
-            </p>
           </div>
         </div>
       </main>
