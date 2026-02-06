@@ -7,7 +7,8 @@ import styles from './Landing.module.css'
 export default function Landing() {
   const navigate = useNavigate()
   const [location, setLocation] = useState('United States')
-  const [selectedScore, setSelectedScore] = useState(null)
+  const [zipCode, setZipCode] = useState('')
+  const [error, setError] = useState('')
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -35,10 +36,20 @@ export default function Landing() {
     }
   }, [])
 
-  const handleCreditSelect = (score) => {
-    setSelectedScore(score)
+  const handleZipCodeSubmit = (e) => {
+    e.preventDefault()
+    
+    // Validate zip code (5 digits)
+    const zipRegex = /^\d{5}(-\d{4})?$/
+    if (!zipRegex.test(zipCode)) {
+      setError('Please enter a valid 5-digit zip code')
+      return
+    }
+    
+    console.log('[v0] Zip code submitted:', zipCode)
+    setError('')
     setTimeout(() => {
-      navigate('/loading', { state: { creditScore: score } })
+      navigate('/loading', { state: { zipCode: zipCode } })
     }, 300)
   }
 
@@ -75,35 +86,29 @@ export default function Landing() {
             Check your eligibility in under 2 minutes. No obligation. No credit impact.
           </p>
 
-          {/* Quiz Section */}
+          {/* Zip Code Section */}
           <div className={styles.quizContainer}>
-            <h2 className={styles.quizTitle}>What is your credit score?</h2>
+            <h2 className={styles.quizTitle}>What is your zip code?</h2>
             
-            <div className={styles.quizOptions}>
+            <form onSubmit={handleZipCodeSubmit} className={styles.zipForm}>
+              <div className={styles.inputGroup}>
+                <input
+                  type="text"
+                  value={zipCode}
+                  onChange={(e) => setZipCode(e.target.value.replace(/\D/g, '').slice(0, 5))}
+                  placeholder="Enter 5-digit zip code"
+                  className={styles.zipInput}
+                  maxLength="5"
+                />
+              </div>
+              {error && <p className={styles.errorMessage}>{error}</p>}
               <button 
-                className={`${styles.creditButton} ${styles.fair} ${selectedScore === 'fair' ? styles.selected : ''}`}
-                onClick={() => handleCreditSelect('fair')}
+                type="submit"
+                className={styles.submitButton}
               >
-                <span className={styles.scoreRange}>500 - 639</span>
-                <span className={styles.scoreLabel}>Fair</span>
+                Check Eligibility
               </button>
-
-              <button 
-                className={`${styles.creditButton} ${styles.good} ${selectedScore === 'good' ? styles.selected : ''}`}
-                onClick={() => handleCreditSelect('good')}
-              >
-                <span className={styles.scoreRange}>640 - 699</span>
-                <span className={styles.scoreLabel}>Good</span>
-              </button>
-
-              <button 
-                className={`${styles.creditButton} ${styles.excellent} ${selectedScore === 'excellent' ? styles.selected : ''}`}
-                onClick={() => handleCreditSelect('excellent')}
-              >
-                <span className={styles.scoreRange}>700+</span>
-                <span className={styles.scoreLabel}>Excellent</span>
-              </button>
-            </div>
+            </form>
           </div>
 
           {/* Requirements */}
