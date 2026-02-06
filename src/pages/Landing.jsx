@@ -36,7 +36,7 @@ export default function Landing() {
   const handleCreditSelect = (score) => {
     setSelectedScore(score)
     setTimeout(() => {
-      navigate('/quiz', { state: { creditScore: score } })
+      navigate('/loading', { state: { creditScore: score } })
     }, 300)
   }
 
