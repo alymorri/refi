@@ -118,7 +118,7 @@
 }
 
 .currencySymbol {
-  font-size: 48px;
+  font-size: clamp(48px, 8vw, 72px);
   font-weight: 700;
   display: inline;
   line-height: 1;
@@ -283,10 +283,9 @@
   height: auto;
   display: block;
   max-width: 520px;
-  /* control size on desktop (adjust if you want) */
   margin: 16px auto 0;
   object-fit: contain;
-  /* keeps full image visible */
+  filter: drop-shadow(0px 0px 0px transparent);
 }
 
 @keyframes slideUp {
@@ -312,7 +311,7 @@
 
   .amountBox {
     padding: 24px 16px;
-    min-height: 280px;
+    min-height: auto;
   }
 
   .amountContent {
@@ -320,11 +319,11 @@
   }
 
   .currencySymbol {
-    font-size: 36px;
+    font-size: clamp(36px, 6vw, 48px);
   }
 
   .amount {
-    font-size: clamp(36px, 8vw, 56px);
+    font-size: clamp(32px, 7vw, 48px);
   }
 
   .nextStepsBox {
