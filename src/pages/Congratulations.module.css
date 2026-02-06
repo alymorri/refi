@@ -291,30 +291,29 @@
 
 /* Timer Container */
 .timerContainer {
-  background: #003366;
-  border: 2px solid #1e40af;
-  border-radius: 8px;
-  padding: 28px;
-  margin: 28px 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 24px 0;
+  margin: 32px 0;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.15);
 }
 
 .timerLabel {
-  color: #6b7280;
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0 0 16px 0;
-  letter-spacing: 1px;
+  color: #1f2937;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
 .timer {
-  font-size: 56px;
+  font-size: 72px;
   font-weight: 900;
-  color: white;
+  color: #dc2626;
   font-family: 'Courier New', monospace;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   line-height: 1;
 }
 
@@ -395,11 +394,12 @@
   }
 
   .timer {
-    font-size: 40px;
-    letter-spacing: 2px;
+    font-size: 52px;
+    letter-spacing: 4px;
   }
 
   .timerContainer {
-    padding: 20px;
+    padding: 16px 0;
+    margin: 24px 0;
   }
 }
