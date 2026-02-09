@@ -8,12 +8,13 @@ export default function Loading() {
   const navigate = useNavigate()
   const location = useLocation()
   const [cityState, setCityState] = useState({ city: '', state: '' })
+  const [hasNavigated, setHasNavigated] = useState(false)
 
   console.log('[v0] Loading component mounted')
   console.log('[v0] Location state:', location.state)
 
   useEffect(() => {
-    console.log('[v0] Loading useEffect triggered')
+    console.log('[v0] Fetch useEffect triggered')
     // Fetch location based on zip code entered by user
     const fetchLocationFromZip = async () => {
       try {
@@ -50,15 +51,19 @@ export default function Loading() {
     fetchLocationFromZip()
   }, [location.state?.zipCode])
 
+  // Separate effect for navigation - runs after fetch completes
   useEffect(() => {
-    console.log('[v0] Timer useEffect triggered, cityState:', cityState)
-    // Simulate realistic loading with random duration (3-5 seconds)
-    const loadingDuration = 3000 // Fixed 3 seconds for testing
-    console.log('[v0] Loading duration set to:', loadingDuration)
+    if (hasNavigated) return // Prevent duplicate navigations
+    
+    console.log('[v0] Navigation effect triggered, cityState:', cityState)
+    const loadingDuration = 3000
     
     const timer = setTimeout(() => {
+      if (hasNavigated) return // Double-check before navigating
+      
       console.log('[v0] Timeout fired, navigating to congratulations')
       console.log('[v0] Passing cityState:', cityState)
+      setHasNavigated(true)
       navigate('/congratulations', {
         state: {
           ...location.state,
@@ -67,11 +72,8 @@ export default function Loading() {
       })
     }, loadingDuration)
 
-    return () => {
-      console.log('[v0] Cleaning up timer')
-      clearTimeout(timer)
-    }
-  }, [navigate, location.state, cityState])
+    return () => clearTimeout(timer)
+  }, [cityState, hasNavigated, navigate, location.state])
 
   return (
     <div className={styles.container}>
