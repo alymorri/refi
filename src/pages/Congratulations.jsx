@@ -17,18 +17,18 @@ export default function Congratulations() {
     console.log('[v0] Location state received:', location.state)
     console.log('[v0] cityState in location.state:', location.state?.cityState)
     
-    // If cityState was passed from Loading, use it immediately
-    if (location.state?.cityState && location.state.cityState.state !== 'USA') {
-      console.log('[v0] Using cityState from Loading:', location.state.cityState)
+    // If cityState was passed from Loading with a valid state, use it
+    if (location.state?.cityState && location.state.cityState.state && location.state.cityState.state.trim() !== '') {
+      console.log('[v0] Using valid cityState from Loading:', location.state.cityState)
       setCityState(location.state.cityState)
-      return // Don't run fallback if we have valid data
+      return
     }
     
     // Fallback: Try to fetch from zip code if available
     const fetchLocationFromZip = async () => {
       try {
         const zipCode = location.state?.zipCode
-        console.log('[v0] Zip code from state:', zipCode)
+        console.log('[v0] Fallback - Zip code from state:', zipCode)
         
         if (zipCode) {
           const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`)

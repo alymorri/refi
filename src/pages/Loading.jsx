@@ -24,7 +24,7 @@ export default function Loading() {
           // Use US ZIP code API to get city and state
           const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`)
           const data = await response.json()
-          console.log('[v0] Zip code location data:', data)
+          console.log('[v0] Zip code location data:', JSON.stringify(data, null, 2))
           console.log('[v0] State from API:', data.state)
           
           if (data.places && data.places.length > 0) {
@@ -33,25 +33,22 @@ export default function Loading() {
             const state = data.state || 'USA'
             console.log('[v0] Setting cityState to:', { city, state })
             setCityState({ city, state })
-            return { city, state }
           } else {
+            console.log('[v0] No places found in response')
             setCityState({ city: 'Your Area', state: 'USA' })
-            return { city: 'Your Area', state: 'USA' }
           }
         } else {
           console.log('[v0] No zip code provided')
           setCityState({ city: 'Your Area', state: 'USA' })
-          return { city: 'Your Area', state: 'USA' }
         }
       } catch (error) {
         console.log('[v0] Zip code location fetch failed:', error)
         setCityState({ city: 'Your Area', state: 'USA' })
-        return { city: 'Your Area', state: 'USA' }
       }
     }
 
     fetchLocationFromZip()
-  }, [])
+  }, [location.state?.zipCode])
 
   useEffect(() => {
     console.log('[v0] Timer useEffect triggered, cityState:', cityState)
