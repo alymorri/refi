@@ -10,43 +10,32 @@ export default function Loading() {
   const [cityState, setCityState] = useState({ city: '', state: '' })
   const [isReady, setIsReady] = useState(false)
 
-  console.log('[v0] Loading component mounted')
-  console.log('[v0] Location state:', location.state)
-
   useEffect(() => {
-    console.log('[v0] Fetch useEffect triggered')
     // Fetch location based on zip code entered by user
     const fetchLocationFromZip = async () => {
       try {
         const zipCode = location.state?.zipCode
-        console.log('[v0] Zip code from state:', zipCode)
         
         if (zipCode) {
           // Use US ZIP code API to get city and state
           const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`)
           const data = await response.json()
-          console.log('[v0] Zip code location data:', JSON.stringify(data, null, 2))
-          console.log('[v0] State from API:', data.state)
           
           if (data.places && data.places.length > 0) {
             const place = data.places[0]
             const city = place['place name'] || 'Your Area'
             const state = data.state || 'USA'
-            console.log('[v0] Setting cityState to:', { city, state })
             setCityState({ city, state })
             setIsReady(true)
           } else {
-            console.log('[v0] No places found in response')
             setCityState({ city: 'Your Area', state: 'USA' })
             setIsReady(true)
           }
         } else {
-          console.log('[v0] No zip code provided')
           setCityState({ city: 'Your Area', state: 'USA' })
           setIsReady(true)
         }
       } catch (error) {
-        console.log('[v0] Zip code location fetch failed:', error)
         setCityState({ city: 'Your Area', state: 'USA' })
         setIsReady(true)
       }
@@ -59,12 +48,9 @@ export default function Loading() {
   useEffect(() => {
     if (!isReady) return
     
-    console.log('[v0] Ready to navigate, cityState:', cityState)
     const loadingDuration = 3000
     
     const timer = setTimeout(() => {
-      console.log('[v0] Timeout fired, navigating to congratulations')
-      console.log('[v0] Passing cityState:', cityState)
       navigate('/congratulations', {
         state: {
           ...location.state,

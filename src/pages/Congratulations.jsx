@@ -10,18 +10,13 @@ export default function Congratulations() {
   const [displayAmount, setDisplayAmount] = useState(0)
   const [timeLeft, setTimeLeft] = useState(300) // 5 minutes in seconds
   const [cityState, setCityState] = useState({ city: 'Your Area', state: 'USA' })
-  const targetAmount = 183598
 
-  // Get location from Loading or fetch if needed
+  // Get location from Loading page
   useEffect(() => {
-    console.log('[v0] Congratulations mounted, location.state:', location.state)
-    
-    // Always use the passed cityState from Loading if available
-    if (location.state?.cityState?.state) {
-      console.log('[v0] Using cityState from Loading:', location.state.cityState)
+    if (location.state?.cityState) {
       setCityState(location.state.cityState)
     }
-  }, [location.state?.cityState])
+  }, [])
 
   // Animated counter
   useEffect(() => {
@@ -59,7 +54,6 @@ export default function Congratulations() {
 
   const handleFillForm = () => {
     const creditScore = location.state?.creditScore
-    console.log('[v0] Credit score from state:', creditScore)
 
     // Define URLs based on credit score
     const urlMap = {
