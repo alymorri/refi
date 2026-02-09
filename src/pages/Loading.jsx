@@ -8,7 +8,7 @@ export default function Loading() {
   const navigate = useNavigate()
   const location = useLocation()
   const [cityState, setCityState] = useState({ city: '', state: '' })
-  const [hasNavigated, setHasNavigated] = useState(false)
+  const [isReady, setIsReady] = useState(false)
 
   console.log('[v0] Loading component mounted')
   console.log('[v0] Location state:', location.state)
@@ -34,36 +34,37 @@ export default function Loading() {
             const state = data.state || 'USA'
             console.log('[v0] Setting cityState to:', { city, state })
             setCityState({ city, state })
+            setIsReady(true)
           } else {
             console.log('[v0] No places found in response')
             setCityState({ city: 'Your Area', state: 'USA' })
+            setIsReady(true)
           }
         } else {
           console.log('[v0] No zip code provided')
           setCityState({ city: 'Your Area', state: 'USA' })
+          setIsReady(true)
         }
       } catch (error) {
         console.log('[v0] Zip code location fetch failed:', error)
         setCityState({ city: 'Your Area', state: 'USA' })
+        setIsReady(true)
       }
     }
 
     fetchLocationFromZip()
   }, [location.state?.zipCode])
 
-  // Separate effect for navigation - runs after fetch completes
+  // Separate effect for navigation - waits until fetch is complete
   useEffect(() => {
-    if (hasNavigated) return // Prevent duplicate navigations
+    if (!isReady) return
     
-    console.log('[v0] Navigation effect triggered, cityState:', cityState)
+    console.log('[v0] Ready to navigate, cityState:', cityState)
     const loadingDuration = 3000
     
     const timer = setTimeout(() => {
-      if (hasNavigated) return // Double-check before navigating
-      
       console.log('[v0] Timeout fired, navigating to congratulations')
       console.log('[v0] Passing cityState:', cityState)
-      setHasNavigated(true)
       navigate('/congratulations', {
         state: {
           ...location.state,
@@ -73,7 +74,7 @@ export default function Loading() {
     }, loadingDuration)
 
     return () => clearTimeout(timer)
-  }, [cityState, hasNavigated, navigate, location.state])
+  }, [isReady, cityState, navigate, location.state])
 
   return (
     <div className={styles.container}>

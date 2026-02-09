@@ -12,47 +12,16 @@ export default function Congratulations() {
   const [cityState, setCityState] = useState({ city: 'Your Area', state: 'USA' })
   const targetAmount = 183598
 
-  // Fetch location from zip code or use passed data from Loading
+  // Get location from Loading or fetch if needed
   useEffect(() => {
-    console.log('[v0] Location state received:', location.state)
-    console.log('[v0] cityState in location.state:', location.state?.cityState)
+    console.log('[v0] Congratulations mounted, location.state:', location.state)
     
-    // If cityState was passed from Loading with a valid state, use it
-    if (location.state?.cityState && location.state.cityState.state && location.state.cityState.state.trim() !== '') {
-      console.log('[v0] Using valid cityState from Loading:', location.state.cityState)
+    // Always use the passed cityState from Loading if available
+    if (location.state?.cityState?.state) {
+      console.log('[v0] Using cityState from Loading:', location.state.cityState)
       setCityState(location.state.cityState)
-      return
     }
-    
-    // Fallback: Try to fetch from zip code if available
-    const fetchLocationFromZip = async () => {
-      try {
-        const zipCode = location.state?.zipCode
-        console.log('[v0] Fallback - Zip code from state:', zipCode)
-        
-        if (zipCode) {
-          const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`)
-          const data = await response.json()
-          console.log('[v0] Full API Response:', JSON.stringify(data, null, 2))
-          
-          if (data.places && data.places.length > 0) {
-            const place = data.places[0]
-            const city = place['place name'] || 'Your Area'
-            const stateAbbr = data.state || 'USA'
-            console.log('[v0] Extracted State Abbreviation:', stateAbbr)
-            setCityState({ city, state: stateAbbr })
-          } else {
-            console.log('[v0] No places found in response')
-            setCityState({ city: 'Your Area', state: 'USA' })
-          }
-        }
-      } catch (error) {
-        console.log('[v0] Zip code location fetch failed:', error)
-      }
-    }
-
-    fetchLocationFromZip()
-  }, [location.state])
+  }, [location.state?.cityState])
 
   // Animated counter
   useEffect(() => {
