@@ -12,39 +12,47 @@ export default function Congratulations() {
   const [cityState, setCityState] = useState({ city: 'Your Area', state: 'USA' })
   const targetAmount = 183598
 
-  // Fetch location from zip code
+  // Fetch location from zip code or use passed data from Loading
   useEffect(() => {
-    const fetchLocationFromZip = async () => {
-      try {
-        const zipCode = location.state?.zipCode
-        console.log('[v0] Zip code from state:', zipCode)
-        
-        if (zipCode) {
-          const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`)
-          const data = await response.json()
-          console.log('[v0] Full API Response:', JSON.stringify(data, null, 2))
+    console.log('[v0] Location state received:', location.state)
+    
+    // If cityState was passed from Loading, use it
+    if (location.state?.cityState) {
+      console.log('[v0] Using cityState from Loading:', location.state.cityState)
+      setCityState(location.state.cityState)
+    } else {
+      // Fallback: Try to fetch from zip code if available
+      const fetchLocationFromZip = async () => {
+        try {
+          const zipCode = location.state?.zipCode
+          console.log('[v0] Zip code from state:', zipCode)
           
-          if (data.places && data.places.length > 0) {
-            const place = data.places[0]
-            const city = place['place name'] || 'Your Area'
-            // The state abbreviation is in data.state (e.g., "NY", "CA", "TX")
-            const stateAbbr = data.state || 'USA'
-            console.log('[v0] Extracted State Abbreviation:', stateAbbr)
-            setCityState({ city, state: stateAbbr })
+          if (zipCode) {
+            const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`)
+            const data = await response.json()
+            console.log('[v0] Full API Response:', JSON.stringify(data, null, 2))
+            
+            if (data.places && data.places.length > 0) {
+              const place = data.places[0]
+              const city = place['place name'] || 'Your Area'
+              const stateAbbr = data.state || 'USA'
+              console.log('[v0] Extracted State Abbreviation:', stateAbbr)
+              setCityState({ city, state: stateAbbr })
+            } else {
+              console.log('[v0] No places found in response')
+              setCityState({ city: 'Your Area', state: 'USA' })
+            }
           } else {
-            console.log('[v0] No places found in response')
-            setCityState({ city: 'Your Area', state: 'USA' })
+            console.log('[v0] No zip code provided')
           }
-        } else {
-          console.log('[v0] No zip code provided')
+        } catch (error) {
+          console.log('[v0] Zip code location fetch failed:', error)
+          setCityState({ city: 'Your Area', state: 'USA' })
         }
-      } catch (error) {
-        console.log('[v0] Zip code location fetch failed:', error)
-        setCityState({ city: 'Your Area', state: 'USA' })
       }
-    }
 
-    fetchLocationFromZip()
+      fetchLocationFromZip()
+    }
   }, [])
 
   // Animated counter

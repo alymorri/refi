@@ -54,8 +54,12 @@ export default function Loading() {
     
     const timer = setTimeout(() => {
       console.log('[v0] Timeout fired, navigating to congratulations')
+      console.log('[v0] Passing cityState:', cityState)
       navigate('/congratulations', {
-        state: location.state,
+        state: {
+          ...location.state,
+          cityState: cityState,
+        },
       })
     }, loadingDuration)
 
@@ -63,7 +67,7 @@ export default function Loading() {
       console.log('[v0] Cleaning up timer')
       clearTimeout(timer)
     }
-  }, [navigate, location.state])
+  }, [navigate, location.state, cityState])
 
   return (
     <div className={styles.container}>
