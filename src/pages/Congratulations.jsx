@@ -158,7 +158,7 @@ export default function Congratulations() {
             {/* Qualification Info Box */}
             <div className={styles.qualificationBox}>
               <p className={styles.qualificationText}>
-                Approved: Claim your cash-out amount now in {cityState.state}
+                {cityState.state} Approved: Claim your cash-out amount now
               </p>
             </div>
 
